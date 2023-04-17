@@ -4,7 +4,6 @@ import { Player } from "../models/Player";
 import AddPlayers from "../components/AddPlayer.vue"
 import TicTacToe from "../components/TicTacToe.vue";
 
-
 let show = ref(true);
 const player1 = ref();
 const player2 = ref();
