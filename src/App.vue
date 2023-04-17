@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import AddPlayer from "./components/AddPlayer.vue";
-import TicTacToe from "./components/TicTacToe.vue";
+import LandingPage from "./components/LandingPage.vue";
 </script>
 
 <template>
-  <!-- <AddPlayer></AddPlayer> -->
-  <TicTacToe></TicTacToe>
+  <LandingPage />
 </template>
 
 <style scoped>

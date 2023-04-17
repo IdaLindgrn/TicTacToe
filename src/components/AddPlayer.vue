@@ -10,6 +10,7 @@ defineEmits(["addPlayers"]);
 
 <template>
     <form>
+        <h1>TicTacToe</h1>
         <label for="x">Player1</label>
         <input v-model="x">
         <label for="o">Player2</label>
