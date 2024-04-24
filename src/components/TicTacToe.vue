@@ -121,7 +121,7 @@ function startGame() {
         <p>It's a Tie!</p>
     </div>
     <div class="mainDiv">
-        <div v-for="(box, index) in boxes" class="box" @click="() => {
+        <div v-for="(box, index) in boxes"  :key="index" :class="{ 'box': true, 'pointer': !box.value, 'default-cursor': box.value }" @click="() => {
             if (props.player1.active) {
                 onBoxClick(index, props.player1)
             }
@@ -166,7 +166,17 @@ function startGame() {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+.default-cursor {
+  cursor: default;
+}
+
 
 .button-container {
     margin: 20px;
