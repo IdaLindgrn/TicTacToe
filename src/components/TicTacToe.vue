@@ -109,12 +109,16 @@ function startGame() {
 <template>
     <div class="gameboard">
     <h1>TicTacToe</h1>
-    <div v-if="playable">
+    <div class="players-turn" v-if="playable && !showWinner && !tie">
         <p v-if="player1.active">It's {{ player1.username }}'s turn!</p>
         <p v-if="player2.active">It's {{ player2.username }}'s turn!</p>
     </div>
-    <div class="button-container">
-       <button class="save-button" @click="resetGame">Reset</button>
+    <div class="players-turn" v-if="showWinner">
+        <p v-if="player1.active">{{ player2.username }} won!</p>
+        <p v-if="player2.active">{{ player1.username }} won!</p>
+    </div>
+    <div class="players-turn" v-if="tie">
+        <p>It's a Tie!</p>
     </div>
     <div class="mainDiv">
         <div v-for="(box, index) in boxes" class="box" @click="() => {
@@ -128,22 +132,23 @@ function startGame() {
             <h1>{{ box.symbolValue }}</h1>
         </div>
     </div>
-    <div class="winner" v-if="showWinner">
-        <h2 v-if="player1.active">{{ player2.username }} won!</h2>
-        <h2 v-if="player2.active">{{ player1.username }} won!</h2>
-    </div>
-    <div v-if="tie">
-        <h2>It's a Tie!</h2>
+   
+    <div class="button-container">
+       <button class="button" @click="resetGame">Restart game</button>
     </div>
    </div>
 </template>
 
-<style scoped >
+<style >
 
 .gameboard {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.players-turn {
+    margin: -40px 0 0px;
 }
 
 .mainDiv {
@@ -165,5 +170,9 @@ function startGame() {
 
 .button-container {
     margin: 20px;
+}
+
+p {
+    font-size: 20px;
 }
 </style>
