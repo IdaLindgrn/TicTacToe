@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Box } from "../models/Box";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { Player } from "../models/Player";
 
 let boxes = ref([new Box(false, ""), new Box(false, ""), new Box(false, ""), new Box(false, ""), new Box(false, ""), new Box(false, ""), new Box(false, ""), new Box(false, ""), new Box(false, "")]);
@@ -35,6 +35,10 @@ function calculateWinner() {
 }
 
 const props = defineProps<ITicTacProps>();
+
+onMounted(() => {
+    startGame()
+});
 
 
 let showWinner = ref(false);
@@ -103,12 +107,15 @@ function startGame() {
 
 
 <template>
+    <div class="gameboard">
     <h1>TicTacToe</h1>
     <div v-if="playable">
-        <p v-if="player1.active">Det är {{ player1.username }}s tur!</p>
-        <p v-if="player2.active">Det är {{ player2.username }}s tur!</p>
+        <p v-if="player1.active">It's {{ player1.username }}'s turn!</p>
+        <p v-if="player2.active">It's {{ player2.username }}'s turn!</p>
     </div>
-    <button @click.once="(startGame())">Start Game</button>
+    <div class="button-container">
+       <button class="save-button" @click="resetGame">Reset</button>
+    </div>
     <div class="mainDiv">
         <div v-for="(box, index) in boxes" class="box" @click="() => {
             if (props.player1.active) {
@@ -122,16 +129,23 @@ function startGame() {
         </div>
     </div>
     <div class="winner" v-if="showWinner">
-        <h2 v-if="player1.active">{{ player2.username }} vann!</h2>
-        <h2 v-if="player2.active">{{ player1.username }} vann!</h2>
+        <h2 v-if="player1.active">{{ player2.username }} won!</h2>
+        <h2 v-if="player2.active">{{ player1.username }} won!</h2>
     </div>
     <div v-if="tie">
-        <h2>Ingen vann!</h2>
+        <h2>It's a Tie!</h2>
     </div>
-    <button @click="resetGame">STARTA OM</button>
+   </div>
 </template>
 
 <style scoped >
+
+.gameboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .mainDiv {
     display: flex;
     flex-wrap: wrap;
@@ -144,5 +158,12 @@ function startGame() {
     border: black solid 5px;
     width: 100px;
     height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container {
+    margin: 20px;
 }
 </style>

@@ -10,6 +10,7 @@ const isSaveDisabled = computed(() => {
 
 defineEmits(["addPlayers"]);
 
+
 </script>
 
 <template>
@@ -25,11 +26,11 @@ defineEmits(["addPlayers"]);
         <input class="input" v-model="o">
       </div>
     </div>
-        <button class="save-button" :disabled="isSaveDisabled" @click="$emit('addPlayers', x, o)">Save</button>
+        <button class="save-button" :disabled="isSaveDisabled" @click="$emit('addPlayers', x, o)">Start Game</button>
     </form>
 </template>
 
-<style scoped>
+<style>
 
 .input-container {
     margin-top: -15px;
@@ -38,7 +39,7 @@ defineEmits(["addPlayers"]);
 }
 
 .input-field {
-    display: flex;
+  display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
@@ -56,6 +57,7 @@ defineEmits(["addPlayers"]);
     border-radius: 6px;
     background-color: rgb(239, 242, 246);
     text-decoration: none;
+    border-color: black;
 }
 
 .save-button {
@@ -63,6 +65,7 @@ defineEmits(["addPlayers"]);
     width: 180px;
     padding: 13px;
     background-color: rgb(175, 179, 198);
+    margin: 10px
 }
 
 .save-button:disabled {
