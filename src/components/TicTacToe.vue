@@ -156,17 +156,19 @@ function startGame() {
     flex-wrap: wrap;
     flex-direction: row;
     width: 330px;
-    height: 320px;
+    height: 320px;        
 }
 
 .box {
     border: black solid 5px;
-    width: 100px;
-    height: 100px;
+    width: calc(100px + 5px);
+    height: calc(100px + 5px);
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    margin: -2.5px;
+    background-color: rgb(239, 242, 246);
 }
 
 .pointer {
